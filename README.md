@@ -1,10 +1,10 @@
 # Go ChatGPT Prompt Splitter
 
-This project is a web-based application that allows users to input a long text 
-string and split it into smaller parts based on a user-defined length. 
-The project uses Go for server-side processing and a simple HTML & JavaScript
-frontend for user interaction. The application uses Redis for data management
-and Docker for containerization and deployment.
+Introducing an interactive web application designed to optimize your use of ChatGPT - The Go ChatGPT Prompt Splitter! This dynamic tool enhances your experience with ChatGPT by allowing you to input extended prompts and conveniently split them into smaller, user-defined segments.
+
+What sets our Prompt Splitter apart is its unique ability to integrate additional contextual prompts. This advanced feature ensures ChatGPT retains all contexts across every prompt chunk, elevating the accuracy and relevance of its responses.
+
+Say goodbye to length limitations and context loss, and embrace an optimized, streamlined, and enriched interaction with ChatGPT using our Prompt Splitter. It's your reliable solution for managing long prompts, ensuring you get the most out of your ChatGPT conversations!
 
 This project is a Go port from Python [ChatGPT Prompt Splitter](https://github.com/jupediaz/chatgpt-prompt-splitter) from jupediaz.
 
