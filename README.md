@@ -61,7 +61,7 @@ part in the "Split Length" field.
 4. Click "Split the text" to split the prompt. The split parts will be displayed
 below the form.
 
-![Prompt got splitted based on given chunk length](static/images/go-chatgpt-prompt-splitter-result.png)
+![Prompt got splitted based on given chunk length](static/images/go-chatgpt-prompt-split-complete.png)
 
 5. Click the "Copy to clipboard" button next to each part to copy the part to
 the clipboard.
