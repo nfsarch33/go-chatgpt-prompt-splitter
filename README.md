@@ -38,9 +38,10 @@ go mod tidy
 
 ## Usage
 ### Running Locally
-1. Run the server:
+
+1. Run the server (you need to have docker desktop installed):
 ```bash
-make run
+make run-docker
 ```
 
 The server will start and listen on port 8080 by default. If you want to use a
@@ -95,6 +96,7 @@ Our project is continuously improving and expanding! Here are some of the exciti
 - [ ] Add tests coverage for handlers
 - [ ] Replace Redis with SQLite: Transition from Redis to SQLite for simplified and efficient data management.
 - [ ] Support for PDF files: Introduce ability to upload PDFs, convert to text, and split the text into manageable parts.
+- [ ] Transform the tool into a cross-platform desktop application, compatible with Windows, macOS, and various Linux distributions.
 - [ ] Improve the UI with Flutter Web: Upgrade front-end to use Flutter Web for a more dynamic, responsive user interface.
 - [ ] Connect to OpenAPI API, user can select and use any API from OpenAPI with either GPT-3.5 or GPT-4 and get response directly. 
 - [ ] Continuous Improvements: Always open to enhancements and new feature suggestions to better serve our users.
