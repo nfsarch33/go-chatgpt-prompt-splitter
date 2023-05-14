@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Long PROMPTs Splitter</title>
+    <title>Go Long Prompts Splitter</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
@@ -27,7 +27,7 @@
 </head>
 <body>
 <div id="app" class="container py-5">
-    <h1 class="mb-4">ChatGPT PROMPTs Splitter</h1>
+    <h1 class="mb-4">Go ChatGPT Prompts Splitter</h1>
     <h2 class="mb-4">Open-source tool for safely process chunks of up to 15,000 characters per request</h2>
     <div class="mb-4">Visit count: {{.VisitCount}}</div>
     <form action="/" method="post">
@@ -70,7 +70,7 @@
         </div>
         <button type="submit" id="split-btn"
                 class="btn btn-primary" :class="{'disabled': isSplitButtonDisabled}" :disabled="isSplitButtonDisabled">
-            [[splitButtonText]]
+            Split The Prompt
         </button>
     </form>
     {{if .FileData}}

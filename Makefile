@@ -10,12 +10,14 @@ BINARY_NAME=main
 all: test build
 
 build:
+	go mod tidy
 	$(GOBUILD) -o $(BINARY_NAME) -v ./cmd/go-chatgpt-prompt-splitter/main.go
 
 test:
 	$(GOTEST) -v ./...
 
 lint:
+	go mod tidy
 	golangci-lint run ./...
 
 run:
