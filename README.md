@@ -39,9 +39,9 @@ go mod tidy
 ## Usage
 ### Running Locally
 
-1. Run the server (you need to have docker desktop installed):
+1. Run the server (you need to have docker desktop installed, I'm planning to make it a desktop app, coming soon):
 ```bash
-make run-docker
+make run-docker-build
 ```
 
 The server will start and listen on port 8080 by default. If you want to use a
