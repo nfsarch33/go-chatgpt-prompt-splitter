@@ -49,12 +49,18 @@ different port, you can specify the PORT environment variable in the .env file.
 2. Open a web browser and navigate to http://localhost:8080 (or the port you 
 specified).
 
+![Home Page of Local Go ChatGPT Splitter Server](static/images/go-chatgpt-prompt-splitter-start.png)
+
 3. Enter your long text in the "Prompt" textarea and specify the length of each
 part in the "Split Length" field.
+   
 
+![Copy the long prompt to the text field](static/images/go-chatgpt-prompt-splitter-input-text.png)
 
 4. Click "Split the text" to split the prompt. The split parts will be displayed
 below the form.
+
+![Prompt got splitted based on given chunk length](static/images/go-chatgpt-prompt-splitter-result.png)
 
 5. Click the "Copy to clipboard" button next to each part to copy the part to
 the clipboard.
