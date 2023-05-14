@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:7.0.11-alpine
+    ports:
+      - "6379:6379"
+
+  go-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - redis
+    env_file:
+      - .env

@@ -19,3 +19,22 @@
 
 # Go workspace file
 go.work
+
+# .env file
+.env
+
+# Binary files
+main
+main.exe
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Exclude node modules
+node_modules/
