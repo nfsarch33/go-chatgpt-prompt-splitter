@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Long Prompts Splitter</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta og:title="Long PROMPTs Splitter">
+    <meta og:description="Tool for safely process chunks of up to 15,000 characters per request">
+    <style>
+        body {
+            /* no horizontal scroll */
+            overflow-x: hidden;
+            /* must have vertical scroll */
+            overflow-y: scroll;
+        }
+
+        .small-textarea {
+            height: 40px; /* Adjust this value to suit your needs */
+            overflow-y: auto; /* Add a scrollbar if the content exceeds the height */
+        }
+    </style>
+    <script src="./static/scripts.js"></script>
+</head>
+<body>
+<div id="app" class="container py-5">
+    <h1 class="mb-4">Go ChatGPT Prompts Splitter</h1>
+    <h2 class="mb-4">Open-source tool for safely process chunks of up to 15,000 characters per request</h2>
+    <div class="mb-4">Visit count: {{.VisitCount}}</div>
+    <form action="/" method="post">
+        <div class="form-group">
+            <label for="prompt">Enter the long prompt to be splitted</label>
+            <textarea class="form-control" id="prompt" name="prompt" rows="10">{{.Prompt}}</textarea>
+            <small id="emailHelp" class="form-text text-muted">Enter the PROMPT that you want to use for the ChatGPT
+                request.</small>
+            <div class="char-count-container">
+                {{with .Prompt}}
+                <span id="prompt-char-count">{{len .}}</span> characters
+                {{else}}
+                <span id="prompt-char-count">0</span> characters
+                {{end}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="split_length">Max chars length for each splitted part</label>
+            <select name="preset" id="preset" class="form-control" onchange="toggleCustomLength(this)" required>
+                {{if and .SplitLength (ne .SplitLength 0)}}
+                <option value="15000" selected>{{else}}
+                <option value="15000">{{end}}
+                    General max safe chunk for ChatGPT (15,000)
+                </option>
+                <option value="custom"
+                        {{if and (ne .SplitLength 8000) (ne .SplitLength 15000) (.SplitLength)}}selected{{end}}>
+                    Custom
+                </option>
+
+            </select>
+            {{if or (eq .SplitLength 8000) (eq .SplitLength 15000) (not .SplitLength)}}
+            <input type="number" name="split_length" class="custom-length" id="split_length" min="1" required
+                   value='{{if and .SplitLength (ne .SplitLength 0)}}{{.SplitLength}}{{else}}15000{{end}}'
+                   style="display: none;">
+            {{else}}
+            <input type="number" name="split_length" class="custom-length" id="split_length" min="1" required
+                   value='{{if .SplitLength}}{{.SplitLength}}{{else}}15000{{end}}'>
+            {{end}}
+            <small id="emailHelp" class="form-text text-muted">Choose the max length for each split part.</small>
+        </div>
+        <button type="submit" id="split-btn"
+                class="btn btn-primary" :class="{'disabled': isSplitButtonDisabled}" :disabled="isSplitButtonDisabled">
+            Split The Prompt
+        </button>
+    </form>
+    {{if .FileData}}
+    <div class="instructions">
+        <h3>Instructions</h3>
+        <pre id="instructions">The total length of the content that I want to send you is too large to send in only one piece.
+
+            For sending you that content, I will follow this rule:
+
+            [START PART 1/10]
+            this is the content of the part 1 out of 10 in total
+            [END PART 1/10]
+
+            Then you just answer: "Received part 1/10"
+
+            And when I tell you "ALL PARTS SENT", then you can continue processing the data and answering my requests.
+        </pre>
+        <button type="button" class="btn btn-secondary" id="copy-instructions-btn" onclick="copyInstructions()">Copy
+            Instructions (first message to send)
+        </button>
+        <small id="emailHelp" class="form-text text-muted">This way we explain ChatGPT how to process the messages we
+            are gonna send.</small>
+    </div>
+    <div class="buttons-container">
+        {{range .FileData}}
+        <!-- the textarea could take long screen, make the textarea small enough to fit in the screen -->
+        <button class="btn btn-secondary my-1" data-content="{{.Content}}" id="btn-{{.PartHash}}"
+                onclick="copyTextToClipboard('{{.Content}}');">
+            Copy part {{.PartNumber}}/{{.TotalParts}} to clipboard
+        </button>
+        {{end}}
+    </div>
+    {{end}}
+    <footer class="mt-5">
+        <p class="d-flex justify-content-between">
+        </p>
+    </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

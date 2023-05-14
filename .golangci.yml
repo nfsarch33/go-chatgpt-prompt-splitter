@@ -1,0 +1,46 @@
+linters-settings:
+  govet:
+    check-shadowing: true
+  golint:
+    min-confidence: 0
+  gocyclo:
+    min-complexity: 10
+  maligned:
+    suggest-new: true
+  dupl:
+    threshold: 150
+  goconst:
+    min-len: 2
+    min-occurrences: 3
+  gocritic:
+    enabled-tags:
+      - performance
+      - style
+      - opinionated
+    disabled-checks:
+      - whyNoLint
+
+linters:
+  enable:
+    - govet
+    - revive
+    - gocyclo
+    - dupl
+    - goconst
+    - gocritic
+
+run:
+  deadline: 1m
+  build-tags:
+    - unit_test
+  tests: true
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - govet
+        - golint
+
+output:
+  sort-results: true
