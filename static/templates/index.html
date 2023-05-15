@@ -23,14 +23,14 @@
             overflow-y: auto; /* Add a scrollbar if the content exceeds the height */
         }
     </style>
-    <script src="./static/scripts.js"></script>
+    <script src="/static/js/scripts.js"></script>
 </head>
 <body>
 <div id="app" class="container py-5">
     <h1 class="mb-4">Go ChatGPT Prompts Splitter</h1>
     <h2 class="mb-4">Open-source tool for safely process chunks of up to 15,000 characters per request</h2>
     <div class="mb-4">Visit count: {{.VisitCount}}</div>
-    <form action="/" method="post">
+    <form action="/static" method="post">
         <div class="form-group">
             <label for="prompt">Enter the long prompt to be splitted</label>
             <textarea class="form-control" id="prompt" name="prompt" rows="10">{{.Prompt}}</textarea>

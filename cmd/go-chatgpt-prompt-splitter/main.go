@@ -16,7 +16,7 @@ func main() {
 	r := gin.Default()
 
 	// Load templates relative to /app directory
-	r.LoadHTMLGlob("./static/*")
+	r.LoadHTMLGlob("./static/templates/*")
 	// Serve static files
 	r.Static("./static", "./static")
 
