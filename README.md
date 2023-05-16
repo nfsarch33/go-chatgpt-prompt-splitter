@@ -27,13 +27,22 @@ git clone https://github.com/yourusername/go-chatgpt-prompt-splitter.git
 ```
 
 2. Change into the project directory:
+ 
 ```bash
 cd go-chatgpt-prompt-splitter
 ```
 
-3. Install the Go dependencies:
+3. Copy `.env.template` to `.env` and update the environment variables as needed:
+
 ```bash
-go mod tidy
+# Port for the application to listen on
+PORT=8080
+```
+
+4. Build the binary
+
+```bash
+make build
 ```
 
 ## Usage
@@ -41,7 +50,7 @@ go mod tidy
 
 1. Run the server (you need to have docker desktop installed, I'm planning to make it a desktop app, coming soon):
 ```bash
-make run-docker-build
+make run
 ```
 
 The server will start and listen on port 8080 by default. If you want to use a
@@ -54,7 +63,6 @@ specified).
 
 3. Enter your long text in the "Prompt" textarea and specify the length of each
 part in the "Split Length" field.
-   
 
 ![Copy the long prompt to the text field](static/images/go-chatgpt-prompt-splitter-input-text.png)
 
@@ -64,9 +72,10 @@ below the form.
 ![Prompt got splitted based on given chunk length](static/images/go-chatgpt-prompt-split-complete.png)
 
 5. Click the "Copy to clipboard" button next to each part to copy the part to
-the clipboard.
+the clipboard respectively.
 
 ### Running with Docker
+
 1. Build and run the Docker containers:
 ```bash
 make run-docker-build
@@ -76,18 +85,16 @@ This will start the Go application and Redis server in separate Docker container
 2. Follow the same steps as above to use the application.
 
 ## Configuration
-This project uses the UPSTASH_REDIS_URL and PORT environment variables. 
-You can specify these variables in the .env file:
+This project uses the `PORT` environment variables.
 
-```makefile
-# URL for the Redis server
-UPSTASH_REDIS_URL="redis://redis:6379"
+You need to specify these variables in the .env file:
 
+```bash
 # Port for the application to listen on
 PORT=8080
 ```
 
-Replace redis://redis:6379 with your Redis URL if needed, and 8080 with the port you want the application to listen on.
+Replace 8080 with the port you want the application to listen on.
 
 ## Roadmap
 

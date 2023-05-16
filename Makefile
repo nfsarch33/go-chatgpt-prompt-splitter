@@ -11,9 +11,11 @@ all: test build
 
 build:
 	go mod tidy
+	# go build -o main -v ./cmd/go-chatgpt-prompt-splitter/main.go
 	$(GOBUILD) -o $(BINARY_NAME) -v ./cmd/go-chatgpt-prompt-splitter/main.go
 
 test:
+	# go test -v ./...
 	$(GOTEST) -v ./...
 
 lint:
