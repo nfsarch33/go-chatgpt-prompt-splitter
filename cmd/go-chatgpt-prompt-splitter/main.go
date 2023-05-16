@@ -100,6 +100,7 @@ func main() {
 	// kill -9 is syscall.SIGKILL but can't be caught, so don't need to add it
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	log.Info("Waiting for server to shutdown")
+
 	<-quit
 	log.Println("Shutting down server...")
 
