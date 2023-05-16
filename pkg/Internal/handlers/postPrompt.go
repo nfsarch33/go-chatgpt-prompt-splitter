@@ -13,7 +13,25 @@ func PostPrompt(c *gin.Context) {
 	prompt := c.PostForm("prompt")
 	splitLength, _ := strconv.Atoi(c.PostForm("split_length"))
 	fileData := promptsplitter.SplitPrompt(prompt, splitLength)
+
+	hash, err := promptsplitter.GenerateRandomString(8)
+	if err != nil {
+		log.Error("Error generating random string: ", err)
+		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
+			"error": err,
+		})
+		return
+	}
+
+	ginH := gin.H{
+		"Prompt":        prompt,
+		"SplitLength":   splitLength,
+		"FileDataSlice": fileData,
+		"Hash":          hash,
+	}
+
 	log.Info(
+		"POST / serving prompt: ",
 		"Request: Split length: ",
 		splitLength,
 		" Prompt: ",
@@ -23,28 +41,6 @@ func PostPrompt(c *gin.Context) {
 		" Total length: ",
 		len(prompt),
 	)
-	hash, err := promptsplitter.GenerateRandomString(8)
-	if err != nil {
-		log.Error("Error generating random string: ", err)
-		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
-			"error": err,
-		})
-		return
-	}
-	counter, err := rdb.Incr(c, "visit_counter").Result()
-	if err != nil {
-		log.Error("Error incrementing visit_counter: ", err)
-	}
-
-	ginH := gin.H{
-		"Prompt":      prompt,
-		"SplitLength": splitLength,
-		"FileData":    fileData,
-		"Hash":        hash,
-		"VisitCount":  counter,
-	}
-
-	log.Info("Split prompt hash: ", hash)
 
 	c.HTML(http.StatusOK, "index.html", ginH)
 }
