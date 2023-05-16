@@ -36,8 +36,8 @@
             <small id="emailHelp" class="form-text text-muted">Enter the PROMPT that you want to use for the ChatGPT
                 request.</small>
             <div class="char-count-container">
-                {{with .Prompt}}
-                <span id="prompt-char-count">{{len .Prompt}}</span> characters
+                {{if .PromptLength}}
+                <span id="prompt-char-count">{{.PromptLength}}</span> characters
                 {{else}}
                 <span id="prompt-char-count">0</span> characters
                 {{end}}
@@ -72,7 +72,7 @@
             Split The Prompt
         </button>
     </form>
-    {{if .FileData}}
+    {{if .FileDataSlice}}
     <div class="instructions">
         <h3>Instructions</h3>
         <pre id="instructions">The total length of the content that I want to send you is too large to send in only one piece.

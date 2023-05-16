@@ -14,9 +14,8 @@ This project is a Go port from Python [ChatGPT Prompt Splitter](https://github.c
 - Copy each part of the split text to the clipboard with a click of a button.
 
 - ## Requirements
-- Go 1.18 or later
-- Docker and Docker Compose
-- Redis in your local environment or a Redis server URL if not running docker
+- Go 1.20 or later
+- Docker and Docker Compose (only if you want to run the application with Docker)
 
 ## Installation
  
@@ -46,7 +45,43 @@ make build
 ```
 
 ## Usage
-### Running Locally
+
+### Running on Windows
+
+If you are using Windows, you can use the provided `build.ps1` PowerShell script to build, test, lint, and run the application.
+
+1. Open a PowerShell terminal in the project directory.
+
+2. Run the following commands as needed:
+
+```powershell
+# To build the application:
+.\build.ps1 -build
+
+# To test the application:
+.\build.ps1 -test
+
+# To lint the application:
+.\build.ps1 -lint
+
+# To run the application:
+.\build.ps1 -run
+```
+
+You can also combine these to run multiple tasks at once:
+
+```powershell
+# To build and run the application:
+.\build.ps1 -build -run
+
+# To test and lint the application:
+.\build.ps1 -test -lint
+
+# To build, test, lint, and run the application:
+.\build.ps1 -build -test -lint -run
+```
+
+### Running Locally on Linux or macOS
 
 1. Run the server (you need to have docker desktop installed, I'm planning to make it a desktop app, coming soon):
 ```bash
@@ -80,7 +115,7 @@ the clipboard respectively.
 ```bash
 make run-docker-build
 ```
-This will start the Go application and Redis server in separate Docker containers.
+This will start the Go application server in separate Docker containers.
 
 2. Follow the same steps as above to use the application.
 
@@ -100,9 +135,16 @@ Replace 8080 with the port you want the application to listen on.
 
 Our project is continuously improving and expanding! Here are some of the exciting updates and enhancements we're planning:
 
+- [x] Remove Redis: Remove Redis from the project.
+- [x] Add Docker support: Add Docker support to the project.
+- [x] Add Docker Compose support: Add Docker Compose support to the project.
+- [x] Add Makefile: Add Makefile to the project.
+- [x] Add GitHub Actions: Add GitHub Actions to the project.
+- [x] Add PowerShell script: Add PowerShell script to the project.
+- [x] Add ChromePD: Add ChromePD to the project, it opens the browser and loads the page automatically.
 - [ ] Add tests coverage for handlers
-- [ ] Replace Redis with SQLite: Transition from Redis to SQLite for simplified and efficient data management.
 - [ ] Support for PDF files: Introduce ability to upload PDFs, convert to text, and split the text into manageable parts.
+- [ ] Add SQLite: Add SQLite to the project to support splitted prompts and PDF files history.
 - [ ] Transform the tool into a cross-platform desktop application, compatible with Windows, macOS, and various Linux distributions.
 - [ ] Improve the UI with Flutter Web: Upgrade front-end to use Flutter Web for a more dynamic, responsive user interface.
 - [ ] Connect to OpenAPI API, user can select and use any API from OpenAPI with either GPT-3.5 or GPT-4 and get response directly. 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Long Prompts Splitter</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta og:title="Long PROMPTs Splitter">
+    <meta og:description="Tool for safely process chunks of up to 15,000 characters per request">
+    <style>
+        body {
+            /* no horizontal scroll */
+            overflow-x: hidden;
+            /* must have vertical scroll */
+            overflow-y: scroll;
+        }
+
+        .small-textarea {
+            height: 40px; /* Adjust this value to suit your needs */
+            overflow-y: auto; /* Add a scrollbar if the content exceeds the height */
+        }
+    </style>
+    <script src="/static/js/scripts.js"></script>
+</head>
+<body>
+<div id="app" class="container py-5">
+    <h1 class="mb-4">Error Occurred</h1>
+    <footer class="mt-5">
+        <p class="d-flex justify-content-between">
+            Error: {{.Error}}
+        </p>
+        <p>
+            <a href="/">Go back to the main page</a>
+        </p>
+    </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
